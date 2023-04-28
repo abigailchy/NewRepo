@@ -1,6 +1,6 @@
 name: building .net application
 on:
-    [push]
+  push:
 jobs:
     build_dot_net:
       runs-on: ubuntu-latest
@@ -8,7 +8,7 @@ jobs:
       - name: setup dotnet sdk
         uses: actions/setup-dotnet@v3
         with: 
-          dotnet-version: 6.0.x
+          dotnet-version: ${{var.DOTNET_VERSION}}
 
       - name: checkout your source
         uses: actions/checkout@v3 
@@ -19,5 +19,5 @@ jobs:
       - name: build app
         run: dotnet build
 
-      - name: list your repo
-        run: ls -lR TICTACTOE/bin
+      - name: list the repo after build
+        run: ls -l /
